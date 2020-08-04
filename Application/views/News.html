@@ -1,0 +1,41 @@
+        <div id="content">
+            <div class="container">
+                <div class="crumbs">
+                    <ul class="breadcrumb" id="breadcrumbs">
+                        <li>
+                            <i class="icon-home"></i> <a href="{URL}">首頁</a>
+                        </li>
+                        <li class="current">
+                            <a href="{URL}News">公告管理</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row-bg">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 公告列表</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                        <!-- <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span> -->
+                                        <a href="{ADD}"><button class="btn btn-info">新增</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                {LIST}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function del( id ){
+                if( confirm( "確定要刪除這筆資料嗎?" ) ){
+                    window.location.href = "{DEL}/"+id;
+                }
+            }
+        </script>

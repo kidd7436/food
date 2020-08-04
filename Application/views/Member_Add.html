@@ -1,0 +1,60 @@
+        <div id="content">
+            <div class="container">
+                <div class="crumbs">
+                    <ul class="breadcrumb" id="breadcrumbs">
+                        <li>
+                            <i class="icon-home"></i> <a href="{URL}">首頁</a>
+                        </li>
+                        <li class="current">
+                            <a href="{URL}Member">會員列表</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row-bg">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 會員列表 - {button}</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                <form class="form-horizontal row-border" method="post" action="{POST_URL}">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">帳號：</label>
+                                        <div class="col-md-10"><input type="text" name="account" class="form-control" placeholder="請輸入帳號......" value="{account}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">名稱：</label>
+                                        <div class="col-md-10"><input type="text" name="name" class="form-control" placeholder="請輸入名稱......" value="{name}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">密碼：</label>
+                                        <div class="col-md-10"><input type="password" name="pass" placeholder="請輸入密碼......" class="form-control"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">狀態：</label>
+                                        <div class="col-md-10">
+                                            <label class="radio-inline">
+                                                <input type="radio" class="uniform" name="enabled" value="1" {enabled1}>啟用
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="uniform" name="enabled" value="0" {enabled0}>停用
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        {HIDDEN_ID}
+                                        <button type="submit" class="btn btn-primary pull-right">{button}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

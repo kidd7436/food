@@ -1,0 +1,64 @@
+        <div id="content">
+            <div class="container">
+                <div class="crumbs">
+                    <ul class="breadcrumb" id="breadcrumbs">
+                        <li>
+                            <i class="icon-home"></i> <a href="{URL}">首頁</a>
+                        </li>
+                        <li class="current">
+                            <a href="{URL}Heat" title="">加熱即食包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row-bg">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 加熱即食包 - {button}</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                <form class="form-horizontal row-border" method="post" action="{POST_URL}">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">品名：</label>
+                                        <div class="col-md-10"><input type="text" name="title" class="form-control" placeholder="請輸入品名......" value="{title}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">建議售價：</label>
+                                        <div class="col-md-10"><input type="text" name="money" class="form-control" placeholder="請輸入建議售價......" value="{money}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">促銷價：</label>
+                                        <div class="col-md-10"><input type="text" name="discount" class="form-control" placeholder="請輸入促銷價......" value="{discount}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">排序：</label>
+                                        <div class="col-md-10"><input type="text" name="sort" class="form-control" placeholder="請輸入排序......" value="{sort}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">狀態：</label>
+                                        <div class="col-md-10">
+                                            <label class="radio-inline">
+                                                <input type="radio" class="uniform" name="enabled" value="1" {enabled1}>啟用
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="uniform" name="enabled" value="0" {enabled0}>停用
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        {HIDDEN_ID}
+                                        <button type="submit" class="btn btn-primary pull-right">{button}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

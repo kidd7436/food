@@ -1,0 +1,181 @@
+        <div id="content">
+            <div class="container">
+                <div class="crumbs">
+                    <ul class="breadcrumb" id="breadcrumbs">
+                        <li>
+                            <i class="icon-home"></i> <a href="{URL}">首頁</a>
+                        </li>
+                        <li class="current">
+                            <a href="{URL}Order" title="">訂單管理</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row-bg">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box widget-closed">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 查詢條件</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                        <span class="btn btn-xs widget-collapse"><i class="icon-angle-up"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content" style="display: none;">
+                                <form class="form-horizontal row-border" method="POST" action="{SRC_POST_URL}">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">帳號</span>
+                                                <input type="text" name="acc" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">订单编号</span>
+                                                <input type="text" name="no" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">狀態</span>
+                                                <select name="status" class="form-control">
+                                                    <option value="-1" selected="">不指定</option><option value="0">未處理</option><option value="1">已匯款</option><option value="2">已完成</option><option value="3">取消</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">筆數</span>
+                                                <select name="ps" class="form-control">
+                                                    <option value="10">10笔</option><option value="30">30笔</option><option value="50" selected="">50笔</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="input-group date datetimepicker" data-date-format="YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon">申請日期( 起 )</span>
+                                                <input name="dts" type="text" class="form-control " placeholder="(起) YYYY-MM-DD HH:mm" value="{DTS}">
+                                                <span class="input-group-addon add-on"><span class="icon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group date datetimepicker" data-date-format="YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon">申請日期( 迄 )</span>
+                                                <input name="dte" type="text" class="form-control " placeholder="(讫) YYYY-MM-DD HH:mm" value="{DTE}">
+                                                <span class="input-group-addon add-on"><span class="icon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-md-6">
+                                            <div class="input-group date datetimepicker" data-date-format="YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon">確認日期( 起 )</span>
+                                                <input name="dts_ok" type="text" value="" class="form-control " placeholder="(起) YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon add-on"><span class="icon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group date datetimepicker" data-date-format="YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon">確認日期( 迄 )</span>
+                                                <input name="dte_ok" type="text" value="" class="form-control " placeholder="(讫) YYYY-MM-DD HH:mm">
+                                                <span class="input-group-addon add-on"><span class="icon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">金額( 起 )</span>
+                                                <input type="text" name="am1" class="form-control" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">金額( 迄 )</span>
+                                                <input type="text" name="am2" class="form-control" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">操作者</span>
+                                                <input type="text" name="updateaccount" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <input type="submit" value="查詢" class="btn btn-primary pull-right">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 訂單管理 - 列表 {SRCSTR}</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                {LIST}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function check( _status, _id )
+            {
+                var url = "{POST}";
+                var checkFlag = false;
+                if( _status == 1 ){
+                    if( confirm( "已匯款完成?" ) ){
+                        checkFlag = true;
+                    }
+                }else if( _status == 2 ){
+                    if( confirm( "此筆訂單已完成?" ) ){
+                        checkFlag = true;
+                    }
+                }else if( _status == 3 ){
+                    if( confirm( "確定要取消這筆資料嗎?" ) ){
+                        checkFlag = true;
+                    }
+                }
+                if( checkFlag ){
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: {id:_id,status:_status},
+                        dataType: 'json',
+                        success: function (data) {
+                                    alert( data.message )
+                                    window.location.reload()
+                                }
+                        });
+                }
+            }
+            $(function () {
+            // -----------------------------------------------------------------
+            // 日期選擇器
+            // -----------------------------------------------------------------
+            $('.datetimepicker').datetimepicker({
+                language: 'zh-Cn',
+                icons: {
+                    time: 'glyphicon glyphicon-time',
+                    date: 'glyphicon glyphicon-calendar',
+                    up: 'glyphicon glyphicon-chevron-up',
+                    down: 'glyphicon glyphicon-chevron-down'
+                }
+            });
+        });
+        </script>

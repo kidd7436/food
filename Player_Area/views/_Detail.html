@@ -1,0 +1,69 @@
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{URL}"><img alt="" src="{PUBLIC_URL}images/logo.png" style="width: 40px;"></a> <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#ftco-nav" data-toggle="collapse" type="button"><span class="oi oi-menu"></span> Menu</button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{URL}About">關於、樂即時</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{URL}LunchBox">精緻餐盒</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{URL}Miyue">彌月禮盒</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{URL}Heat">加熱即食包</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{URL}Qna">Q & A</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{URL}Account">我的帳號</a>
+                    </li>
+                    <li class="nav-item cta cta-colored">
+                        <a class="nav-link" href="{URL}BuyCart"><span class="icon-shopping_cart"></span>[0]</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="hero-wrap hero-bread" style="background-image: url('{PUBLIC_URL}images/bg_1.png');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-0 bread">精緻餐盒</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                {LIST}
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function BuyCar()
+        {
+            var 
+                buyCarUrl = "{POST_URL}";
+                id = $("input[name='id']").val();
+                title = $("input[name='title']").val();
+                quantity = $("input[name='quantity']").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: buyCarUrl,
+                    data: {id:id,title:title,quantity:quantity},
+                    dataType: 'json',
+                    success: function (data) {
+                                alert( data.message )
+                            }
+                    });
+        }
+    </script>
+
+

@@ -1,0 +1,46 @@
+<div class="hero-wrap hero-bread" style="background-image: url('{PUBLIC_URL}images/bg_1.png');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">VIP登入</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate fadeInUp ftco-animated">
+                <div class="cart-total mb-3">
+                    <h3>VIP登入</h3>
+                    <form class="info" method="post" name="myform">
+                        <div class="form-group">
+                            <label for="">帳號</label>
+                            <input type="text" name="login" class="form-control text-left px-3" placeholder="請輸入帳號......">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">密碼</label>
+                            <input type="password" name="pass" class="form-control text-left px-3" placeholder="請輸入密碼......">
+                        </div>
+                        <div class="form-group" style="position: relative;">
+                            <label for="country">驗證碼</label>
+                            <input type="text" name="authnum" class="form-control text-left px-3" maxlength="5" placeholder="請輸入驗證碼......">
+                            <img src="{CAPTCHA}" style="position: absolute; right:0; top:36px">
+                            {CAPTCHAHIDDENINPUT}
+                        </div>
+                    </form>
+                </div>
+                <p>
+                    <a href="{URL}Register" class="btn btn-primary py-3 px-4">加入VIP</a> 
+                    <input type="button" class="btn btn-primary py-3 px-4 float-right float-right" onclick="submitform()" value="登入">
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function submitform()
+    {
+        document.myform.submit();
+    }
+</script>

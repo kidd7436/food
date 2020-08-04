@@ -1,0 +1,76 @@
+    <div class="hero-wrap hero-bread" style="background-image: url('{PUBLIC_URL}images/bg_1.png');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-0 bread">註冊VIP</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 ftco-animate">
+                    <form class="billing-form" method="post" action="{ADDURL}" id="myform">
+                        <h3 class="mb-4 billing-heading">註冊VIP</h3>
+                        <div class="row align-items-end">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>電子郵件</label> 
+                                    <input class="form-control" placeholder="請盡量避免使用Yahoo或PcHome等免費信箱" type="text" name="mail" required onblur=isEmail(this.value)>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="lastname">密碼</label> 
+                                    <input class="form-control" placeholder="6-15碼，英文+數字，大小寫不同" type="password" name="password" maxlength="15" required pattern="[A-Za-z0-9]{6,15}" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="lastname">確認密碼</label> 
+                                    <input class="form-control" placeholder="請再輸入一次密碼" type="password" name="rpassword" maxlength="15" required pattern="[A-Za-z0-9]{6,15}" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="streetaddress">真實姓名</label> 
+                                    <input class="form-control" placeholder="" name="name" type="text" required>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="streetaddress">行動電話</label> 
+                                    <input class="form-control" placeholder="" name="phone" type="text" maxlength="10" required pattern="[0-9]{10}">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="streetaddress">地址</label> 
+                                    <input class="form-control" placeholder="" name="address" type="text" required>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary py-3 px-4 float-right">註冊</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function isEmail(strEmail) {
+            if (strEmail.search(/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/)!=-1)
+                return true;
+            else
+                alert("Email 資料錯誤？請重新輸入！");
+            }
+    </script>

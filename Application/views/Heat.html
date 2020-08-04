@@ -1,0 +1,47 @@
+        <div id="content">
+            <div class="container">
+                <div class="crumbs">
+                    <ul class="breadcrumb" id="breadcrumbs">
+                        <li>
+                            <i class="icon-home"></i> <a href="{URL}">首頁</a>
+                        </li>
+                        <li class="current">
+                            <a href="{URL}Heat" title="">加熱即食包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row-bg">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget box">
+                            <div class="widget-header">
+                                <h4><i class="icon-reorder"></i> 加熱即食包 - 列表</h4>
+                                <div class="toolbar no-padding">
+                                    <div class="btn-group">
+                                        <a href="{ADD}"><button class="btn btn-info">新增</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                {LIST}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function del( id ){
+                if( confirm( "確定要刪除這筆資料嗎?" ) ){
+                    window.location.href = "{DEL}/"+id;
+                }
+            }
+            $('a[rel=popover]').popover({
+                html: true,
+                trigger: 'hover',
+                content: function () {
+                    return '<img src="'+$(this).data('img') + '" />';
+                }
+            });
+        </script>

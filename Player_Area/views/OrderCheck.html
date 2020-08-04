@@ -1,0 +1,178 @@
+    <div class="hero-wrap hero-bread" style="background-image: url('{PUBLIC_URL}images/bg_1.png');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-0 bread">結帳清單</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="ftco-section">
+        <div class="container">
+            <form action="{ORDER_URL}" method="POST" id="myForm" >
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 ftco-animate">
+                        <h3 class="mb-4 billing-heading">詳細資料</h3>
+                        <div class="row align-items-end">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="firstname">收件人：</label> 
+                                    <input class="form-control" name="name" type="text" value="{NAME}">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="phone">電話：</label>
+                                    <input class="form-control" name="phone" type="text" value="{PHONE}">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="streetaddress">地址：</label> 
+                                    <input class="form-control" name="address" type="text" value="{ADDRESS}">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="emailaddress">Email</label> 
+                                    <input class="form-control" name="mail" type="text" value="{MAIL}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="row mt-5 pt-3">
+                            <div class="col-md-12 d-flex mb-5">
+                                <div class="cart-detail cart-total p-3 p-md-4">
+                                    <h3 class="billing-heading mb-4">結帳清單</h3>
+                                    <p class="d-flex"><span>小計</span> <span id="subtotal"></span></p>
+                                    <p class="d-flex"><span>運費</span> <span id="freight">80</span></p>
+                                    <hr>
+                                    <p class="d-flex total-price"><span>總計</span> <span id="total"></span></p>
+                                </div>
+                            </div>
+                            <div id="content"></div>
+                            <div class="col-md-12 d-flex mb-5">
+                                <div class="cart-detail p-3 p-md-4">
+                                    <h3 class="billing-heading mb-4">取貨方式</h3>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <label><input class="mr-2" name="take" type="radio" value="1" onchange="total( this.value )" checked> 宅配</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <label><input class="mr-2" name="take" type="radio" value="2" onchange="total( this.value )"> 自取</label>
+                                                <p>麵匠拉麵 - 404台中市北區錦平北街33</p>
+                                                <p>04 2206 1037</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <label><input class="mr-2" name="take" type="radio" value="3" onchange="total( this.value )"> 自取</label>
+                                                <p>衣博士(黎明店) - 408台中市南屯區黎明路二段75號</p>
+                                                <p>04 2381 3023</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="content"></div>
+                            <div class="col-md-12 d-flex mb-5">
+                                <div class="cart-detail p-3 p-md-4">
+                                    <h3 class="billing-heading mb-4">付款方式</h3>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <label><input class="mr-2" name="Payment" type="radio" value="1" checked> 轉帳</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <label><input class="mr-2" name="Payment" type="radio" value="2" > LINY PAY</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" onclick="formSubmit()" class="btn btn-primary py-3 px-4" value="送出訂單">
+                                    <!-- <p><a class="btn btn-primary py-3 px-4" href="#">送出訂單</a></p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .col-md-8 -->
+                </div>
+            </form>
+        </div>
+    </section><!-- .section -->
+    <script>
+        subtotal()
+        function subtotal(){
+            var list = '';
+                subtotal = 0;
+                cart = buyList();
+            if( cart.length != 0 ){
+                cart.forEach(function(item, index, array){
+                        list += '<input type="hidden" class="form-control" name="content['+index+'][title]" type="text" value="'+item.title+'">';
+                        list += '<input type="hidden" class="form-control" name="content['+index+'][quantity]" type="text" value="'+item.quantity+'">';
+                        subtotal = parseInt( subtotal ) + parseInt( item.money * item.quantity )
+                    });
+                    var total = parseInt( subtotal ) + parseInt( document.getElementById("freight").innerHTML );
+            }
+            else
+            {
+                var url = "{URL}";
+                    location.href = url;
+            }
+            document.getElementById("content").innerHTML = list;
+            document.getElementById("subtotal").innerHTML = subtotal;
+            document.getElementById("total").innerHTML = total;
+        }
+
+
+        function buyList()
+        {
+            var carAry = [];
+            for (var i = 0; i < localStorage.length; i++) {
+                    var localValue = localStorage.getItem(localStorage.key(i));
+                    var key = localStorage.key(i);
+                    if (key != "cart"&&key.indexOf("cart")>=0) {
+                        var obj = JSON.parse(localValue);
+                        carAry.push(obj);
+                    }
+                }
+                return carAry;
+        }
+
+        function total( _type )
+        {
+            if( _type == 1 )
+            {
+                var subtotal = document.getElementById("subtotal").innerText;
+                $("#freight").text( 80 );
+                $("#total").text( parseInt( subtotal ) + parseInt( 80 ) );
+            }
+            else
+            {
+                var subtotal = document.getElementById("subtotal").innerText;
+                $("#freight").text( 0 );
+                $("#total").text(subtotal);
+            }
+        }
+
+        function formSubmit()
+        {
+            document.getElementById("myForm").submit()
+            localStorage.clear() 
+            alert( "訂購成功，！！" );
+        }
+        
+    </script>

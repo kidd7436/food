@@ -1,0 +1,91 @@
+    <div class="hero-wrap hero-bread" style="background-image: url('{PUBLIC_URL}images/bg_1.png');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-0 bread">購物車</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="ftco-section ftco-cart">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+                    <span>★無法查看詳細資料可左右滑動一下唷★</span>
+                    <div class="cart-list" id="dataList">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <input type="button" class="btn btn-primary py-3 px-4 float-right" onclick="BuyCheck()" value="結帳去">
+        </div>
+    </section>
+    <script>
+        dataList( );
+
+        function dataList( )
+        {
+            var list = "";
+                cart = buyList();
+                url = "{URL}";
+                puburl = "{PUBLIC_URL}";
+
+            if( cart.length != 0 ){
+                    list += '<table class="table">';
+                    list += '<thead class="thead-primary">';
+                    list += '<tr class="text-center">';
+                    list += '<th>&nbsp;</th>';
+                    list += '<th>&nbsp;</th>';
+                    list += '<th>商品名稱</th>';
+                    list += '<th>價錢</th>';
+                    list += '<th>數量</th>';
+                    list += '<th>總價</th>';
+                    list += '</tr>';
+                    list += '</thead>';
+                    list += '<tbody>';
+                cart.forEach(function(item, index, array){
+                        img = puburl+'images/product/'+item.id+'.jpg';
+                        list += '<tr class="text-center">';
+                        list += '<td class="product-remove"><a href="javascript:" onclick="remove( '+item.id+' )"><span class="ion-ios-close"></span></a></td>';
+                        list += '<td class="image-prod"><div class="img" style="background-image:url('+img+');"></div></td>';
+                        list += '<td class="product-name"><h3>'+item.title+'</h3></td>';
+                        list += '<td class="price">'+item.money+'</td>';
+                        list += '<td class="quantity"><div class="input-group mb-3"><input type="text" name="product['+item.id+']['+item.quantity+']" class="quantity form-control input-number" value="'+item.quantity+'" min="1" max="100"></div></td>';
+                        list += '<td>'+item.quantity*item.money+'</td>';
+                        list += '<td><input type="hidden" name="product['+item.id+'][id]" value="'+item.id+'"></td>';
+                        list += '</tr>';
+                    });
+                    list += '</tbody>';
+                    list += '</table>';
+            }else{
+                var list = '<div class="py-3 bg-secondary text-center">購物車目前沒有商品，快去選購！！<a href="'+url+'LunchBox">點此去</a></div>';
+            }
+            document.getElementById("dataList").innerHTML = list;
+        }
+
+        function buyList()
+        {
+            var carAry = [];
+            for (var i = 0; i < localStorage.length; i++) {
+                    var localValue = localStorage.getItem(localStorage.key(i));
+                    var key = localStorage.key(i);
+                    if (key != "cart"&&key.indexOf("cart")>=0) {
+                        var obj = JSON.parse(localValue);
+                        carAry.push(obj);
+                    }
+                }
+                return carAry;
+        }
+
+        function remove( _id )
+        {
+            localStorage.removeItem('cart'+_id);
+            alert( "已刪除指定內容！！" );
+            dataList( );
+        }
+        function BuyCheck()
+        {
+            var checkOut = "{CHECKOUT_URL}";
+            location.href = checkOut;
+        }
+    </script>
