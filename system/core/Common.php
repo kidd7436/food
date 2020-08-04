@@ -449,7 +449,39 @@
     @param      String      $filename 檔案名稱，包含副檔名。
     @param      Mixed       $data 檔案內容
     **/
-function create_data_uri( $source_file ) {
-  $encoded_string = base64_encode(file_get_contents($source_file));
-  return $encoded_string;
-}
+    function create_data_uri( $source_file ) 
+    {
+        $encoded_string = base64_encode(file_get_contents($source_file));
+        return $encoded_string;
+    }
+
+    /**
+    | 偽造Google搜尋引擎,取網頁內容
+    | --------------------------------------------------------------------------
+    | @package      Devil
+    | @subpackage   Core
+    | @category     Common Function
+    | --------------------------------------------------------------------------
+    | @param        String
+    | @param        String
+    | --------------------------------------------------------------------------
+    **/
+    if ( ! function_exists('curl_google'))
+    {
+        function curl_google( $url , $follow = true )
+        {
+            $ch = curl_init();
+            curl_setopt( $ch , CURLOPT_RETURNTRANSFER , true );
+            curl_setopt( $ch , CURLOPT_ENCODING, 'gzip,deflate');
+            curl_setopt( $ch , CURLOPT_URL , $url );
+            curl_setopt( $ch , CURLOPT_HEADER , false );
+            curl_setopt( $ch , CURLOPT_USERAGENT , "Google Bot" );
+            curl_setopt( $ch , CURLOPT_TIMEOUT , 5 );                           //最大執行秒數
+            curl_setopt( $ch , CURLOPT_SSL_VERIFYPEER, false); //这个是重点,规避ssl的证书检查。
+            curl_setopt( $ch , CURLOPT_SSL_VERIFYHOST, FALSE); // 跳过host验证
+            ($follow) ? curl_setopt( $ch , CURLOPT_FOLLOWLOCATION , true ) : '';
+            $output = curl_exec( $ch );
+            curl_close( $ch );
+            return ( $output ? $output : false );
+        }
+    }
