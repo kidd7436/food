@@ -203,6 +203,8 @@ class Member extends Controller
         # ----------------------------------------------------------------------
         $htmlArr[ "account" ] = "";
         $htmlArr[ "name" ] = "";
+        $htmlArr[ "phone" ] = "";
+        $htmlArr[ "address" ] = "";
         $htmlArr[ "enabled0" ] = "";
         $htmlArr[ "enabled1" ] = "checked='checked'";
         $htmlArr[ "HIDDEN_ID" ] = "";

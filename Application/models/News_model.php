@@ -73,4 +73,32 @@ class News_Model extends Model
         }
     }
 
+    /**
+    @brief      寫檔
+    @retval     Mix / FALSE
+    **/
+    public function writeTxt( )
+    {
+        $newsArr = array();
+        $newsArr = self::getNewsAll( );
+
+        $filename = dirname( dirname( dirname(__FILE__) ) ) . DIRECTORY_SEPARATOR . "Player_Area"  . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "news.txt";
+
+        $news = "";
+        foreach( $newsArr as $key => $value )
+        {
+            if( $value[ "dts" ] < time() && $value[ "dte" ] > time() && $value[ "enabled" ] == 1 )
+            {
+                $news .= $value[ "content" ].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+            }
+        }
+        if( file_exists( $filename ) )
+        {
+            $fp = fopen( $filename, 'w' );
+            fclose($fp);
+            chmod($filename, 0777);
+        }
+        file_put_contents( $filename , $news );
+    }
+
 }

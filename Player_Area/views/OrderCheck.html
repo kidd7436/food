@@ -16,7 +16,7 @@
                         <div class="row align-items-end">
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <label for="firstname">收件人：</label> 
+                                    <label for="firstname">收件人：</label>
                                     <input class="form-control" name="name" type="text" value="{NAME}">
                                 </div>
                             </div>
@@ -30,14 +30,14 @@
                             <div class="w-100"></div>
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <label for="streetaddress">地址：</label> 
+                                    <label for="streetaddress">地址：</label>
                                     <input class="form-control" name="address" type="text" value="{ADDRESS}">
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <label for="emailaddress">Email</label> 
+                                    <label for="emailaddress">Email</label>
                                     <input class="form-control" name="mail" type="text" value="{MAIL}">
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="cart-detail cart-total p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">結帳清單</h3>
                                     <p class="d-flex"><span>小計</span> <span id="subtotal"></span></p>
-                                    <p class="d-flex"><span>運費</span> <span id="freight">80</span></p>
+                                    <p class="d-flex"><span>運費</span> <span id="freight">{SHIPPING}</span></p>
                                     <hr>
                                     <p class="d-flex total-price"><span>總計</span> <span id="total"></span></p>
                                 </div>
@@ -114,6 +114,8 @@
         </div>
     </section><!-- .section -->
     <script>
+        var shipping_free = "{SHIPPING_FREE}";
+        var shipping = parseInt( document.getElementById("freight").innerHTML );
         subtotal()
         function subtotal(){
             var list = '';
@@ -125,7 +127,14 @@
                         list += '<input type="hidden" class="form-control" name="content['+index+'][quantity]" type="text" value="'+item.quantity+'">';
                         subtotal = parseInt( subtotal ) + parseInt( item.money * item.quantity )
                     });
-                    var total = parseInt( subtotal ) + parseInt( document.getElementById("freight").innerHTML );
+                    var tmpTotal = parseInt( subtotal );
+                    // 如果已達免運設定，將值up為0
+                    if( tmpTotal > shipping_free )
+                    {
+                        document.getElementById("freight").innerHTML = 0;
+                        shipping = 0;
+                    }
+                    var total = tmpTotal + shipping;
             }
             else
             {
@@ -171,8 +180,8 @@
         function formSubmit()
         {
             document.getElementById("myForm").submit()
-            localStorage.clear() 
+            localStorage.clear()
             alert( "訂購成功，！！" );
         }
-        
+
     </script>

@@ -98,13 +98,13 @@
     @endcond
     **/
             //define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/MVC/Source/' . DEVIL_APP_PROJECT . '/' );
-            define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/' );
+            define( 'DEVIL_APP_Url' , '//' . $_SERVER['HTTP_HOST'] . '/' );
     /**
     @cond
     **/
             break;
         default:
-            define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/' );
+            define( 'DEVIL_APP_Url' , '//' . $_SERVER['HTTP_HOST'] . '/' );
     }
     /**
     @endcond

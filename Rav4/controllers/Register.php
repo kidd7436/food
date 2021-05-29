@@ -28,7 +28,7 @@ class Register extends Controller
         //判斷手機板
         $userAgent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : 'unknown';
         $isMobileDevice = preg_match("/(iphone|ipod|ipad|android|blackberry|mini|windows\sce|palm)/", $userAgent );
-        $w = ( $isMobileDevice ) ? 'height="2600px" width="350px"' : 'height="1500px" width=700px';
+        $w = ( $isMobileDevice ) ? 'height="2600px" width="350px"' : 'height="1530px" width=700px';
         # ----------------------------------------------------------------------
         # 輸出內容
         # ----------------------------------------------------------------------

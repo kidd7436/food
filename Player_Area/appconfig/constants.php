@@ -12,7 +12,7 @@
     /**
     @brief      專案名稱 ( 站名 title )
     **/
-    define( 'DEVIL_APP_PROJECT_NAME' , '樂即食' );
+    define( 'DEVIL_APP_PROJECT_NAME' , '樂即食HeatingFun' );
 
     /**
     @brief      系統預設最高權限帳號
@@ -98,13 +98,13 @@
     @endcond
     **/
             //define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/MVC/Source/' . DEVIL_APP_PROJECT . '/' );
-            define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/' );
+            define( 'DEVIL_APP_Url' , '//' . $_SERVER['HTTP_HOST'] . '/' );
     /**
     @cond
     **/
             break;
         default:
-            define( 'DEVIL_APP_Url' , 'http://' . $_SERVER['HTTP_HOST'] . '/' );
+            define( 'DEVIL_APP_Url' , '//' . $_SERVER['HTTP_HOST'] . '/' );
     }
     /**
     @endcond

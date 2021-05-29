@@ -239,7 +239,7 @@ class Order extends Controller
             $default_dt_flag = 0;
         }
         # ----------------------------------------------------------------------
-        # 預設查詢本日 + 昨日 
+        # 預設查詢本日 + 昨日
         # ----------------------------------------------------------------------
         if ( $default_dt_flag )
         {
@@ -294,6 +294,8 @@ class Order extends Controller
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_row();
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂單號' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂購者' , 'th' );
+            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '地址' , 'th' );
+            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '電話' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂購日期' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂購內容' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '金額' , 'th' );
@@ -319,7 +321,7 @@ class Order extends Controller
                 # --------------------------------------------------------------
                 //$edit = '<a class="btn btn-xs bs-tooltip" href="'.DEVIL_APP_Url.__CLASS__."/index/edit/".$val['id'].'" title="修改"><i class="icon-edit"></i></a>&nbsp;&nbsp;';
                 # --------------------------------------------------------------
-                # 防呆 
+                # 防呆
                 # --------------------------------------------------------------
                 switch( $val[ 'status' ] )
                 {
@@ -343,6 +345,8 @@ class Order extends Controller
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_row();
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'order_id' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'name' ] );
+                Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'address' ] );
+                Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'phone' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( date( "Y-m-d H:i:s", $val[ 'createtime' ] ) );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'content' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'amount' ] );
@@ -678,7 +682,7 @@ class Order extends Controller
     //             //     . "&response=http://192.168.1.200/smreply.asp;
     //             $buf = "https://sms.mitake.com.tw/b2c/mtk/SmSend?CharsetURL=UTF-8&username=0915919871&password=0926&dstaddr=".$phone.""
     //                  . "&smbody=". rawurlencode( $msg );
-                
+
     //             core_predie($buf);
     //                 # --------------------------------------------------------------
     //             # 呼叫API

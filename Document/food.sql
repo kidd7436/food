@@ -168,8 +168,10 @@ insert into `_upgrade_msg` set `msg` = 'k_config', `dt` = now();
 INSERT INTO `k_config` (`id`, `val`, `remarks`)
 VALUES
 -- 系統本身相關
-('systemcheck','0','系统维护中') ,
-('login_fail_count','25','登入密码容错次数') ,
+('systemcheck','0','系统维护中'),
+('login_fail_count','25','登入密码容错次数'),
+('shipping_free','0','免運設定'),
+('shipping','25','運費設定'),
 ('version','v1.00','版本');
 
 -- -----------------------------------------------------------------------------
@@ -209,7 +211,7 @@ CREATE TABLE `product`
     `updateid` int(11) NOT NULL DEFAULT 0 COMMENT '異動人員' ,
     `updatedt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '異動時間' ,
     `updateip` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '異動人員IP' ,
-    PRIMARY KEY ( `id` ) 
+    PRIMARY KEY ( `id` )
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- for debug
 insert into `_upgrade_msg` set `msg` = 'Product', `dt` = now();
@@ -275,7 +277,7 @@ CREATE TABLE `carousel`
     `updateid` int(11) NOT NULL DEFAULT 0 COMMENT '異動人員' ,
     `updatedt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '異動時間' ,
     `updateip` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '異動人員IP' ,
-    PRIMARY KEY ( `id` ) 
+    PRIMARY KEY ( `id` )
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- for debug
 insert into `_upgrade_msg` set `msg` = 'carousel', `dt` = now();
@@ -294,7 +296,7 @@ CREATE TABLE `orderdata` (
   `email` VARCHAR(100) DEFAULT NULL COMMENT '電子信箱',
   `address` VARCHAR(100) DEFAULT NULL COMMENT '地址',
   `content` text DEFAULT NULL COMMENT '内容',
-  `savetime` INT(11) NOT NULL COMMENT '入款時間', 
+  `savetime` INT(11) NOT NULL COMMENT '入款時間',
   `createtime` INT(11) NOT NULL COMMENT '產生時間',
   `updatetime` INT(11) NOT NULL COMMENT '更新時間',
   `checktime` INT(11) NOT NULL COMMENT '確認時間',

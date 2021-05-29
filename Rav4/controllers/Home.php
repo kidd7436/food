@@ -26,51 +26,6 @@ class Home extends Controller
     public function index(  )
     {
         # ----------------------------------------------------------------------
-        # 初始化
-        # ----------------------------------------------------------------------
-        $myfile = $banner = "";
-        $dataArr = array();
-        # ----------------------------------------------------------------------
-        # 檔案路徑
-        # ----------------------------------------------------------------------
-        $fn = dirname( dirname( dirname(__FILE__) ) ) . DIRECTORY_SEPARATOR . "Player_Area"  . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "carousel.txt";
-        # ----------------------------------------------------------------------
-        # 防呆
-        # ----------------------------------------------------------------------
-        if ( file_exists( $fn ) )
-        {
-            # ------------------------------------------------------------------
-            # 取出檔案內容
-            # ------------------------------------------------------------------
-            $myfile = file_get_contents( $fn , 'r' );
-            # ------------------------------------------------------------------
-            # 轉成陣列
-            # ------------------------------------------------------------------
-            $dataArr = json_decode( $myfile , true )[ "TT" ];
-        }
-        # ----------------------------------------------------------------------
-        # 轉成陣列
-        # ----------------------------------------------------------------------
-        if( $dataArr )
-        {
-            foreach( $dataArr as $key => $val )
-            {
-                $banner .= '<div class="slider-item" style="background-image: url('.DEVIL_APP_PUBLIC_URL . 'images/banner/'.$val[ "id" ].'.png'.');">';
-                $banner .= '<div class="overlay"></div>';
-                $banner .= '<div class="container">';
-                $banner .= '<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">';
-                $banner .= '<div class="col-md-12 ftco-animate text-center">';
-                $banner .= '<h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>';
-                $banner .= '<h2 class="subheading mb-4"></h2>';
-                $banner .= '<p><a class="btn btn-primary" href='.DEVIL_APP_Url.'LunchBox'.'>購物去</a></p>';
-                $banner .= '</div>';
-                $banner .= '</div>';
-                $banner .= '</div>';
-                $banner .= '</div>';
-            }
-        }
-
-        # ----------------------------------------------------------------------
         # 輸出內容
         # ----------------------------------------------------------------------
         Bootstart::$_lib[ 'My_HtmlView' ]->Extension_HtmlView
@@ -90,11 +45,7 @@ class Home extends Controller
                 # --------------------------------------------------------------
                 # 網頁 TITLE
                 # --------------------------------------------------------------
-                "TITLE" => DEVIL_APP_PROJECT_NAME ,
-                # --------------------------------------------------------------
-                # 輪播圖
-                # --------------------------------------------------------------
-                "BANNER" => $banner ,
+                "TITLE" => DEVIL_APP_PROJECT_NAME
             )
         );
     }

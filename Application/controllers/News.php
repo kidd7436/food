@@ -77,7 +77,7 @@ class News extends Controller
     }
 
     /**
-    @brief      加熱即食包( 首頁 )
+    @brief      公告首頁
     **/
     public function _datalist(  )
     {
@@ -103,8 +103,9 @@ class News extends Controller
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '#' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '標題' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '內容' , 'th' );
+            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '狀態' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '開始顯示' , 'th' );
-            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '結速顯示' , 'th' );
+            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '結束顯示' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '功能' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_TSection( 'tbody' );
             # ------------------------------------------------------------------
@@ -131,6 +132,7 @@ class News extends Controller
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'id' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'title' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'content' ] );
+                Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $enabled[ $val[ 'enabled' ] ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( date( "Y-m-d H:i:s", $val[ 'dts' ] ) );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( date( "Y-m-d H:i:s", $val[ 'dte' ] ) );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $edit );
@@ -258,7 +260,7 @@ class News extends Controller
     }
 
     /**
-    @brief      加熱即食包( 新增、俢改程序 )
+    @brief      公告( 新增、俢改程序 )
     **/
     private function _post( )
     {
@@ -337,6 +339,11 @@ class News extends Controller
                 show_errormsg( '開始時間不得大於結束時間，請重新輸入！！' );
             }
             # ------------------------------------------------------------------
+            # 過濾『狀態』
+            # ------------------------------------------------------------------
+            $enabled = Bootstart::$_lib[ 'Core_Input' ]->post( 'enabled' , 'int' );
+            $enabled = ( ( $enabled == false ) ? 0 :  intval( $enabled ) );
+            # ------------------------------------------------------------------
             # 組成資訊
             # ------------------------------------------------------------------
             $dataArr = array();
@@ -344,6 +351,7 @@ class News extends Controller
             $dataArr[ 'content' ] = $content;
             $dataArr[ 'dts' ] = $dts;
             $dataArr[ 'dte' ] = $dte;
+            $dataArr[ 'enabled' ] = $enabled;
             $dataArr[ "updateid" ] = Core_LoadSession( 'id' );
             $dataArr[ "updatedt" ] = date('Y-m-d H:i:s');
             $dataArr[ "updateip" ] = sprintf( "%u" , ip2long ( Bootstart::$_lib['Core_UserAgent']->ip ) );
@@ -367,6 +375,13 @@ class News extends Controller
                     show_errormsg( '新增失敗，請重新輸入！！' );
                 }
             }
+            # ------------------------------------------------------------------
+            # 寫檔
+            # ------------------------------------------------------------------
+            Bootstart::$_mod[ 'News_Model' ]->writeTxt();
+            # ------------------------------------------------------------------
+            # 返回
+            # ------------------------------------------------------------------
             Core_Redirect( __CLASS__ );
         }
         Core_Redirect( __CLASS__ );

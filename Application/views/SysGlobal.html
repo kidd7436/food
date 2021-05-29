@@ -16,32 +16,47 @@
                     <div class="col-md-12">
                         <div class="widget box">
                             <div class="widget-header">
-                                <h4><i class="icon-reorder"></i> 關於 - 列表</h4>
-                                <div class="toolbar no-padding">
-                                    <div class="btn-group">
-                                        <a href="{ADD}"><button class="btn btn-info">新增</button></a>
-                                    </div>
-                                </div>
+                                <h4><i class="icon-reorder"></i> 全域設定</h4>
                             </div>
                             <div class="widget-content">
-                                {LIST}
+                                <div class="table-responsive">
+                                    <form class="form-horizontal row-border validate" action="{POST_URL}" method="post">
+                                        <table class="table table-hover table-striped table-bordered table-highlight-head table-condensed" style="text-align:center;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>免運金額設定
+                                                        <a href="javascript:;" class="bs-tooltip" data-original-title="到達此金額即可免運費">
+                                                            <i class="icon-question-sign"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td align="center">
+                                                        <input class="form-control" type="text" name="shipping_free" value="{SHIPPING_FREE}" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>運費設定
+                                                        <a href="javascript:;" class="bs-tooltip" data-original-title="運費設定">
+                                                            <i class="icon-question-sign"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td align="center">
+                                                        <input class="form-control" type="text" name="shipping" value="{SHIPPING}" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-actions">
+                                                    <input type="submit" value="保存" class="btn btn-primary pull-right">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            function del( id ){
-                if( confirm( "確定要刪除這筆資料嗎?" ) ){
-                    window.location.href = "{DEL}/"+id;
-                }
-            }
-            $('a[rel=popover]').popover({
-                html: true,
-                trigger: 'hover',
-                content: function () {
-                    return '<img src="'+$(this).data('img') + '" />';
-                }
-            });
-        </script>

@@ -81,11 +81,13 @@ class Product_Model extends Model
     **/
     public function writeTxt( $_type = 1 )
     {
+        //core_predie("dd");
         $productArr = array();
         $productArr = self::getProductByType( 0 );
 
         //$filename = DEVIL_SYSTEM_PATH . DIRECTORY_SEPARATOR . implode( DIRECTORY_SEPARATOR , array( "Player_Area" , "public" , "data" ,"product.txt" ) );
         $filename = dirname( dirname( dirname(__FILE__) ) ) . DIRECTORY_SEPARATOR . "Player_Area"  . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "product.txt";
+
         $openProduc = array();
         foreach( $productArr as $key => $value )
         {
@@ -93,11 +95,11 @@ class Product_Model extends Model
             $openProduc[ $value[ "type" ] ][ $value[ "title" ] ] = $value;
         }
         $openProduc = json_encode($openProduc);
-        if( !file_exists( $filename ) )
+        if( file_exists( $filename ) )
         {
             $fp = fopen( $filename, 'w' );
             fclose($fp);
-            chmod($filename, 0700);
+            chmod($filename, 0777);
         }
         file_put_contents( $filename , $openProduc );
     }

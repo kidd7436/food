@@ -124,7 +124,7 @@ final class KConfig_Model extends Model
         return $this->db->query_execute
         (
             $sql ,
-            array( ':id' => $id , ':value' => strval( $value ) , ':updateid' => $uid , ':updatedt' => $dt , ':updateip' => Bootstart::$_lib['UserAgent']->ip )
+            array( ':id' => $id , ':value' => strval( $value ) , ':updateid' => $uid , ':updatedt' => $dt , ':updateip' => Bootstart::$_lib['Core_UserAgent']->ip )
         );
     }
 
