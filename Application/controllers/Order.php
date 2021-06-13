@@ -299,6 +299,7 @@ class Order extends Controller
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂購日期' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '訂購內容' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '金額' , 'th' );
+            Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '付款方式' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '狀態' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '備註' , 'th' );
             Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( '功能' , 'th' );
@@ -308,6 +309,10 @@ class Order extends Controller
             # ------------------------------------------------------------------
             $status = array( 0 => '待處理', 1 => '已匯款', 2 => '已完成', 3 => '取消' );
             # ------------------------------------------------------------------
+            # 付款方式對照
+            # ------------------------------------------------------------------
+            $payment = array( 1 => '轉帳', 2 => 'LINY PAY' );
+            # ------------------------------------------------------------------
             # 產生tr
             # ------------------------------------------------------------------
             foreach( $dataArr[ "f" ] as $key => $val )
@@ -316,10 +321,6 @@ class Order extends Controller
                 # 初始化
                 # --------------------------------------------------------------
                 $edit = "";
-                # --------------------------------------------------------------
-                # 初始化
-                # --------------------------------------------------------------
-                //$edit = '<a class="btn btn-xs bs-tooltip" href="'.DEVIL_APP_Url.__CLASS__."/index/edit/".$val['id'].'" title="修改"><i class="icon-edit"></i></a>&nbsp;&nbsp;';
                 # --------------------------------------------------------------
                 # 防呆
                 # --------------------------------------------------------------
@@ -350,6 +351,7 @@ class Order extends Controller
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( date( "Y-m-d H:i:s", $val[ 'createtime' ] ) );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'content' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'amount' ] );
+                Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $payment[ $val[ 'typeid' ] ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $status[ $val[ 'status' ] ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $val[ 'note' ] );
                 Bootstart::$_lib[ 'Core_HtmlTable' ]->add_cell( $edit );
