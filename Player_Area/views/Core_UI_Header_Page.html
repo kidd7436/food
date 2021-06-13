@@ -59,9 +59,47 @@
                         </div>
                     </li>
                     <li class="nav-item cta cta-colored" id="BuyCart">
-                        <a class="nav-link" href="{URL}BuyCart"><span class="icon-shopping_cart"></span>[0]</a>
+                        <a class="nav-link" href="{URL}BuyCart" id="cart_num"></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <script>
+        getLocalStorageData();
+
+        function getLocalStorageData()
+        {
+            let totalBox = 0;
+            for (var i = 0; i < localStorage.length; i++) {
+                    var localValue = localStorage.getItem(localStorage.key(i));
+                    var key = localStorage.key(i);
+                    if (key != "cart"&&key.indexOf("cart")>=0) {
+                        totalBox++;
+                    }
+                }
+                // 購物車 - 商品數 - WEB
+                document.getElementById("cart_num").innerHTML = "<span class='icon-shopping_cart'></span>["+totalBox+"]";
+        }
+
+
+        // function getLocalStorageData() {
+        //     let cartData = JSON.parse(localStorage.getItem("data"));
+
+        //     let sum = 0;
+        //     let totalBox = 0;
+        //     // 防呆有資料在跑
+        //     if( cartData ){
+        //         cartData.forEach((item) => {
+        //             sum += item.sum;
+        //             totalBox += item.num;
+        //         });
+        //         // 購物車 - 商品數 - WEB
+        //         document.getElementById("cart_num").innerHTML = totalBox;
+        //         // 購物車 - 商品數 - MOBILE
+        //         document.querySelector(".notify-badge").innerHTML = totalBox;
+        //         // 購物車 - 總價格
+        //         document.getElementById("cart_total").innerHTML = sum;
+        //     }
+        // }
+    </script>

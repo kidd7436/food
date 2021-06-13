@@ -79,9 +79,12 @@
 
         function remove( _id )
         {
-            localStorage.removeItem('cart'+_id);
-            alert( "已刪除指定內容！！" );
+            var name = 'cart'+_id;
+            var localValue = JSON.parse( localStorage.getItem(localStorage.key(name)) );
+            localStorage.removeItem(name);
+            alert( "已刪除『"+localValue.title+"』！！" );
             dataList( );
+            getLocalStorageData();
         }
         function BuyCheck()
         {

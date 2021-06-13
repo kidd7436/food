@@ -18,7 +18,7 @@
     <script>
         function BuyCar()
         {
-            var 
+            var
                 id = $("input[name='id']").val();
                 title = $("input[name='title']").val();
                 quantity = $("input[name='quantity']").val();
@@ -38,6 +38,7 @@
                 batString = JSON.stringify(bat);
                 localStorage.setItem("cart"+id, batString);
                 alert( "商品已加入購物車！！" );
+                getLocalStorageData();
         }
     </script>
 
