@@ -181,11 +181,7 @@ class Order extends Controller
             # ------------------------------------------------------------------
             # 宅配要在加上運費
             # ------------------------------------------------------------------
-            // if( $_POST[ "Payment" ] == 1 && $total < $shipping_free )
-            // {
-            //     $total = $total + $shipping;
-            // }
-            if( $total < $shipping_free )
+            if( $_POST[ "take" ] == 1 && $total < $shipping_free )
             {
                 $total = $total + $shipping;
             }
