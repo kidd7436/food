@@ -181,7 +181,11 @@ class Order extends Controller
             # ------------------------------------------------------------------
             # 宅配要在加上運費
             # ------------------------------------------------------------------
-            if( $_POST[ "Payment" ] == 1 && $total < $shipping_free )
+            // if( $_POST[ "Payment" ] == 1 && $total < $shipping_free )
+            // {
+            //     $total = $total + $shipping;
+            // }
+            if( $total < $shipping_free )
             {
                 $total = $total + $shipping;
             }
@@ -219,7 +223,7 @@ class Order extends Controller
                 # --------------------------------------------------------------
                 # 發送訊息
                 # --------------------------------------------------------------
-                //Bootstart::$_lib[ 'Core_LineNotify' ]->myRoute( $msg );
+                Bootstart::$_lib[ 'Core_LineNotify' ]->myRoute( $msg );
             }
             Core_Redirect( "Account/Order" );
         }

@@ -231,6 +231,7 @@ class Miyue extends Controller
         # ----------------------------------------------------------------------
         $htmlArr[ "title" ] = "";
         $htmlArr[ "money" ] = "";
+        $htmlArr[ "content" ] = "";
         $htmlArr[ "discount" ] = "";
         $htmlArr[ "enabled0" ] = "";
         $htmlArr[ "enabled1" ] = "checked='checked'";
@@ -306,7 +307,7 @@ class Miyue extends Controller
             # ------------------------------------------------------------------
             # 初始化變數
             # ------------------------------------------------------------------
-            $id = $title = $money = $discount = $peddledt = '';
+            $id = $title = $money = $discount = $peddledt = $content = '';
             $sort = 1;
             # ------------------------------------------------------------------
             # 判斷是修改 還是 新增
@@ -376,6 +377,10 @@ class Miyue extends Controller
             # ------------------------------------------------------------------
             $sort = Bootstart::$_lib[ 'Core_Input' ]->post( 'sort' , 'int' );
             # ------------------------------------------------------------------
+            # 過濾『CONTENT』
+            # ------------------------------------------------------------------
+            $content = htmlspecialchars( $_POST[ "content" ] );
+            # ------------------------------------------------------------------
             # 過濾『狀態』
             # ------------------------------------------------------------------
             $enabled = Bootstart::$_lib[ 'Core_Input' ]->post( 'enabled' , 'int' );
@@ -389,6 +394,7 @@ class Miyue extends Controller
             $dataArr[ 'money' ] = $money;
             $dataArr[ 'discount' ] =( ( $discount ) ? $discount : $money );
             $dataArr[ 'enabled' ] = $enabled;
+            $dataArr[ 'content' ] = $content;
             $dataArr[ 'sort' ] = $sort;
             $dataArr[ "updateid" ] = Core_LoadSession( 'id' );
             $dataArr[ "updatedt" ] = date('Y-m-d H:i:s');
